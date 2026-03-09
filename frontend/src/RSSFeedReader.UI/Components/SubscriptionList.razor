@@ -1,0 +1,25 @@
+@using System.Globalization
+
+@if (!OrderedSubscriptions.Any())
+{
+    <p data-testid="subscriptions-empty">No subscriptions</p>
+}
+else
+{
+    <ul data-testid="subscriptions-list">
+        @foreach (var subscription in OrderedSubscriptions)
+        {
+            <li class="mb-2" data-testid="subscription-item">
+                <div><strong>@subscription.Url</strong></div>
+                <div class="text-muted small">@subscription.AddedAt.ToUniversalTime().ToString("u", CultureInfo.InvariantCulture)</div>
+            </li>
+        }
+    </ul>
+}
+
+@code {
+    [Parameter]
+    public IEnumerable<SubscriptionDto> Subscriptions { get; set; } = [];
+
+    private IEnumerable<SubscriptionDto> OrderedSubscriptions => Subscriptions.OrderBy(s => s.AddedAt);
+}

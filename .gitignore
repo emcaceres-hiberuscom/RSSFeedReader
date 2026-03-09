@@ -1,0 +1,27 @@
+# .NET
+bin/
+obj/
+TestResults/
+**/TestResults/
+coverage.cobertura.xml
+*.coverage
+*.user
+*.suo
+packages/
+
+# Logs and temp
+*.log
+*.tmp
+*.swp
+
+# Environment
+.env
+.env.*
+
+# IDE/editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

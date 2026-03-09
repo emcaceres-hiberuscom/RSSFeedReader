@@ -1,0 +1,6 @@
+@RSSFeedReader.API_HostAddress = http://localhost:5241
+
+GET {{RSSFeedReader.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -26,16 +26,16 @@ description: "Task list for MVP Subscription Management implementation"
 
 **Duration**: ~30-45 minutes
 
-- [ ] T001 Create solution and project structure: `dotnet new sln -n RSSFeedReader` at repository root
-- [ ] T002 Create backend API project: `dotnet new webapi -n backend/RSSFeedReader.API -f net8.0`
-- [ ] T003 Create backend test project: `dotnet new xunit -n backend/RSSFeedReader.API.Tests -f net8.0`
-- [ ] T004 Create frontend Blazor project: `dotnet new blazorwasm -n frontend/RSSFeedReader.UI -f net8.0`
-- [ ] T005 Create frontend test project: `dotnet new xunit -n frontend/RSSFeedReader.UI.Tests -f net8.0`
-- [ ] T006 [P] Add projects to solution: `dotnet sln RSSFeedReader.sln add` for all four projects
-- [ ] T007 Create `.gitignore` for backend project: exclude bin/, obj/, *.user, appsettings.local.json
-- [ ] T008 [P] Create `.gitignore` for frontend project: exclude bin/, obj/, node_modules/ (if applicable)
-- [ ] T009 Add xUnit and testing NuGet packages: `Moq`, `FluentAssertions` to both test projects
-- [ ] T010 Verify solution builds: `dotnet build RSSFeedReader.sln` succeeds without errors
+- [X] T001 Create solution and project structure: `dotnet new sln -n RSSFeedReader` at repository root
+- [X] T002 Create backend API project: `dotnet new webapi -n backend/RSSFeedReader.API -f net8.0`
+- [X] T003 Create backend test project: `dotnet new xunit -n backend/RSSFeedReader.API.Tests -f net8.0`
+- [X] T004 Create frontend Blazor project: `dotnet new blazorwasm -n frontend/RSSFeedReader.UI -f net8.0`
+- [X] T005 Create frontend test project: `dotnet new xunit -n frontend/RSSFeedReader.UI.Tests -f net8.0`
+- [X] T006 [P] Add projects to solution: `dotnet sln RSSFeedReader.sln add` for all four projects
+- [X] T007 Create `.gitignore` for backend project: exclude bin/, obj/, *.user, appsettings.local.json
+- [X] T008 [P] Create `.gitignore` for frontend project: exclude bin/, obj/, node_modules/ (if applicable)
+- [X] T009 Add xUnit and testing NuGet packages: `Moq`, `FluentAssertions` to both test projects
+- [X] T010 Verify solution builds: `dotnet build RSSFeedReader.sln` succeeds without errors
 
 **Checkpoint**: All projects created, solution builds successfully
 
@@ -51,44 +51,44 @@ description: "Task list for MVP Subscription Management implementation"
 
 ### Backend Infrastructure
 
-- [ ] T011 [P] Create backend Models directory structure: `backend/src/RSSFeedReader.API/Models/`
-- [ ] T012 [P] Create backend Services directory structure: `backend/src/RSSFeedReader.API/Services/`
-- [ ] T013 Create base Subscription model in `backend/RSSFeedReader.API/Models/Subscription.cs` with properties: Id (int), Url (string), AddedAt (DateTime)
-- [ ] T014 Create AddSubscriptionRequest DTO in `backend/RSSFeedReader.API/Models/AddSubscriptionRequest.cs` with [Required] and [StringLength(2000, MinimumLength = 1)] validation
-- [ ] T015 Create SubscriptionDto in `backend/RSSFeedReader.API/Models/SubscriptionDto.cs` (same as Subscription for responses)
-- [ ] T016 Create SubscriptionsResponse in `backend/RSSFeedReader.API/Models/SubscriptionsResponse.cs` with `IEnumerable<SubscriptionDto> Subscriptions` property
-- [ ] T017 Create ISubscriptionRepository interface in `backend/RSSFeedReader.API/Services/ISubscriptionRepository.cs` with GetAllAsync() and AddAsync(string url) methods
-- [ ] T018 Create InMemorySubscriptionRepository in `backend/RSSFeedReader.API/Services/InMemorySubscriptionRepository.cs` implementing ISubscriptionRepository with static List<Subscription>
-- [ ] T019 Add XML documentation comments to InMemorySubscriptionRepository explaining static collection and session-only persistence
-- [ ] T020 Create SubscriptionService in `backend/RSSFeedReader.API/Services/SubscriptionService.cs` injecting ISubscriptionRepository
-- [ ] T021 Implement SubscriptionService.GetAllAsync() method delegating to repository with no transformation
-- [ ] T022 Implement SubscriptionService.AddAsync(string url) method: trim URL, validate max 2000 chars, call repository.AddAsync()
+- [X] T011 [P] Create backend Models directory structure: `backend/src/RSSFeedReader.API/Models/`
+- [X] T012 [P] Create backend Services directory structure: `backend/src/RSSFeedReader.API/Services/`
+- [X] T013 Create base Subscription model in `backend/RSSFeedReader.API/Models/Subscription.cs` with properties: Id (int), Url (string), AddedAt (DateTime)
+- [X] T014 Create AddSubscriptionRequest DTO in `backend/RSSFeedReader.API/Models/AddSubscriptionRequest.cs` with [Required] and [StringLength(2000, MinimumLength = 1)] validation
+- [X] T015 Create SubscriptionDto in `backend/RSSFeedReader.API/Models/SubscriptionDto.cs` (same as Subscription for responses)
+- [X] T016 Create SubscriptionsResponse in `backend/RSSFeedReader.API/Models/SubscriptionsResponse.cs` with `IEnumerable<SubscriptionDto> Subscriptions` property
+- [X] T017 Create ISubscriptionRepository interface in `backend/RSSFeedReader.API/Services/ISubscriptionRepository.cs` with GetAllAsync() and AddAsync(string url) methods
+- [X] T018 Create InMemorySubscriptionRepository in `backend/RSSFeedReader.API/Services/InMemorySubscriptionRepository.cs` implementing ISubscriptionRepository with static List<Subscription>
+- [X] T019 Add XML documentation comments to InMemorySubscriptionRepository explaining static collection and session-only persistence
+- [X] T020 Create SubscriptionService in `backend/RSSFeedReader.API/Services/SubscriptionService.cs` injecting ISubscriptionRepository
+- [X] T021 Implement SubscriptionService.GetAllAsync() method delegating to repository with no transformation
+- [X] T022 Implement SubscriptionService.AddAsync(string url) method: trim URL, validate max 2000 chars, call repository.AddAsync()
 
 ### Backend Configuration
 
-- [ ] T023 Update `backend/RSSFeedReader.API/Program.cs` to add CORS policy named "DevelopmentPolicy"
-- [ ] T024 Configure CORS in Program.cs to allow https://localhost:5173 and http://localhost:5173 origins
-- [ ] T025 Register dependency injection in Program.cs: `services.AddScoped<ISubscriptionRepository, InMemorySubscriptionRepository>()`
-- [ ] T026 Register SubscriptionService in DI: `services.AddScoped<SubscriptionService>`
-- [ ] T027 Add CORS middleware to request pipeline: `app.UseCors("DevelopmentPolicy")` in Program.cs
-- [ ] T028 Test backend builds without errors: `dotnet build backend/RSSFeedReader.API`
+- [X] T023 Update `backend/RSSFeedReader.API/Program.cs` to add CORS policy named "DevelopmentPolicy"
+- [X] T024 Configure CORS in Program.cs to allow https://localhost:5173 and http://localhost:5173 origins
+- [X] T025 Register dependency injection in Program.cs: `services.AddScoped<ISubscriptionRepository, InMemorySubscriptionRepository>()`
+- [X] T026 Register SubscriptionService in DI: `services.AddScoped<SubscriptionService>`
+- [X] T027 Add CORS middleware to request pipeline: `app.UseCors("DevelopmentPolicy")` in Program.cs
+- [X] T028 Test backend builds without errors: `dotnet build backend/RSSFeedReader.API`
 
 ### Frontend Infrastructure
 
-- [ ] T029 [P] Create frontend Models directory: `frontend/src/RSSFeedReader.UI/Models/`
-- [ ] T030 [P] Create frontend Services directory: `frontend/src/RSSFeedReader.UI/Services/`
-- [ ] T031 [P] Create frontend Pages directory: `frontend/src/RSSFeedReader.UI/Pages/`
-- [ ] T032 [P] Create frontend Components directory: `frontend/src/RSSFeedReader.UI/Components/`
-- [ ] T033 Copy AddSubscriptionRequest DTO to frontend: `frontend/src/RSSFeedReader.UI/Models/AddSubscriptionRequest.cs`
-- [ ] T034 Copy SubscriptionDto to frontend: `frontend/src/RSSFeedReader.UI/Models/SubscriptionDto.cs`
-- [ ] T035 Review and update `frontend/src/RSSFeedReader.UI/wwwroot/appsettings.json` to include `"ApiUrl": "http://localhost:5000"`
-- [ ] T036 Test frontend builds: `dotnet build frontend/RSSFeedReader.UI` succeeds without errors
+- [X] T029 [P] Create frontend Models directory: `frontend/src/RSSFeedReader.UI/Models/`
+- [X] T030 [P] Create frontend Services directory: `frontend/src/RSSFeedReader.UI/Services/`
+- [X] T031 [P] Create frontend Pages directory: `frontend/src/RSSFeedReader.UI/Pages/`
+- [X] T032 [P] Create frontend Components directory: `frontend/src/RSSFeedReader.UI/Components/`
+- [X] T033 Copy AddSubscriptionRequest DTO to frontend: `frontend/src/RSSFeedReader.UI/Models/AddSubscriptionRequest.cs`
+- [X] T034 Copy SubscriptionDto to frontend: `frontend/src/RSSFeedReader.UI/Models/SubscriptionDto.cs`
+- [X] T035 Review and update `frontend/src/RSSFeedReader.UI/wwwroot/appsettings.json` to include `"ApiUrl": "http://localhost:5000"`
+- [X] T036 Test frontend builds: `dotnet build frontend/RSSFeedReader.UI` succeeds without errors
 
 ### Local Development Checklist Documentation
 
-- [ ] T037 Create `docs/local-dev-checklist.md` with pre-launch verification steps (from quickstart.md)
-- [ ] T038 Document backend startup command in checklist
-- [ ] T039 Document frontend startup command in checklist
+- [X] T037 Create `docs/local-dev-checklist.md` with pre-launch verification steps (from quickstart.md)
+- [X] T038 Document backend startup command in checklist
+- [X] T039 Document frontend startup command in checklist
 
 **Checkpoint**: All foundational infrastructure in place, both backend and frontend build successfully. DI configured. Ready for user story implementation.
 
@@ -104,31 +104,31 @@ description: "Task list for MVP Subscription Management implementation"
 
 ### Backend Implementation - User Story 1
 
-- [ ] T040 [P] [US1] Create SubscriptionsController in `backend/RSSFeedReader.API/Controllers/SubscriptionsController.cs` inheriting from ControllerBase
-- [ ] T041 [US1] Add [ApiController] and [Route("api/[controller]")] attributes to controller
-- [ ] T042 [P] [US1] Inject SubscriptionService into SubscriptionsController constructor
-- [ ] T043 [US1] Implement POST /api/subscriptions endpoint accepting AddSubscriptionRequest
-- [ ] T044 [US1] Add validation in POST endpoint: check if URL is null/empty after trimming, return 400 Bad Request if invalid
-- [ ] T045 [US1] Add validation in POST endpoint: check if URL exceeds 2000 chars, return 400 Bad Request if too long
-- [ ] T046 [US1] Implement successful POST response: return 201 Created with created subscription DTO
-- [ ] T047 [US1] Add [ProducesResponseType(typeof(SubscriptionDto), StatusCodes.Status201Created)] to POST endpoint
-- [ ] T048 [US1] Add [ProducesResponseType(StatusCodes.Status400BadRequest)] to POST endpoint
-- [ ] T049 [US1] Add XML documentation comment to POST endpoint describing the operation and response codes
+- [X] T040 [P] [US1] Create SubscriptionsController in `backend/RSSFeedReader.API/Controllers/SubscriptionsController.cs` inheriting from ControllerBase
+- [X] T041 [US1] Add [ApiController] and [Route("api/[controller]")] attributes to controller
+- [X] T042 [P] [US1] Inject SubscriptionService into SubscriptionsController constructor
+- [X] T043 [US1] Implement POST /api/subscriptions endpoint accepting AddSubscriptionRequest
+- [X] T044 [US1] Add validation in POST endpoint: check if URL is null/empty after trimming, return 400 Bad Request if invalid
+- [X] T045 [US1] Add validation in POST endpoint: check if URL exceeds 2000 chars, return 400 Bad Request if too long
+- [X] T046 [US1] Implement successful POST response: return 201 Created with created subscription DTO
+- [X] T047 [US1] Add [ProducesResponseType(typeof(SubscriptionDto), StatusCodes.Status201Created)] to POST endpoint
+- [X] T048 [US1] Add [ProducesResponseType(StatusCodes.Status400BadRequest)] to POST endpoint
+- [X] T049 [US1] Add XML documentation comment to POST endpoint describing the operation and response codes
 
 ### Backend Testing - User Story 1
 
-- [ ] T050 [P] [US1] Create SubscriptionServiceTests in `backend/RSSFeedReader.API.Tests/Services/SubscriptionServiceTests.cs`
-- [ ] T051 [US1] Write unit test: AddAsync stores URL exactly as provided (without trimming special chars)
-- [ ] T052 [US1] Write unit test: AddAsync with URL at max length (2000 chars) succeeds
-- [ ] T053 [US1] Write unit test: AddAsync with URL > 2000 chars throws ArgumentException
-- [ ] T054 [US1] Write unit test: AddAsync with whitespace-only input returns success (MVP design allows this)
-- [ ] T055 [US1] Write unit test: Multiple AddAsync calls add subscriptions without collision
-- [ ] T056 [P] [US1] Create SubscriptionsControllerTests in `backend/RSSFeedReader.API.Tests/Controllers/SubscriptionsControllerTests.cs`
-- [ ] T057 [US1] Write integration test: POST /api/subscriptions with valid URL returns 201 with subscription DTO
-- [ ] T058 [US1] Write integration test: POST /api/subscriptions with empty URL returns 400 Bad Request
-- [ ] T059 [US1] Write integration test: POST /api/subscriptions with URL > 2000 chars returns 400 Bad Request
-- [ ] T060 [US1] Verify unit test coverage >= 70% in SubscriptionService and Controller classes
-- [ ] T061 [US1] Run all backend tests: `dotnet test backend/` (all tests PASS)
+- [X] T050 [P] [US1] Create SubscriptionServiceTests in `backend/RSSFeedReader.API.Tests/Services/SubscriptionServiceTests.cs`
+- [X] T051 [US1] Write unit test: AddAsync stores URL exactly as provided (without trimming special chars)
+- [X] T052 [US1] Write unit test: AddAsync with URL at max length (2000 chars) succeeds
+- [X] T053 [US1] Write unit test: AddAsync with URL > 2000 chars throws ArgumentException
+- [X] T054 [US1] Write unit test: AddAsync with whitespace-only input returns success (MVP design allows this)
+- [X] T055 [US1] Write unit test: Multiple AddAsync calls add subscriptions without collision
+- [X] T056 [P] [US1] Create SubscriptionsControllerTests in `backend/RSSFeedReader.API.Tests/Controllers/SubscriptionsControllerTests.cs`
+- [X] T057 [US1] Write integration test: POST /api/subscriptions with valid URL returns 201 with subscription DTO
+- [X] T058 [US1] Write integration test: POST /api/subscriptions with empty URL returns 400 Bad Request
+- [X] T059 [US1] Write integration test: POST /api/subscriptions with URL > 2000 chars returns 400 Bad Request
+- [X] T060 [US1] Verify unit test coverage >= 70% in SubscriptionService and Controller classes
+- [X] T061 [US1] Run all backend tests: `dotnet test backend/` (all tests PASS)
 
 **Checkpoint**: Backend can accept POST requests to add subscriptions, validates inputs, responds with correct status codes and DTOs. All tests passing.
 
@@ -144,83 +144,83 @@ description: "Task list for MVP Subscription Management implementation"
 
 ### Backend Implementation - User Story 2
 
-- [ ] T062 [P] [US2] Implement GET /api/subscriptions endpoint in SubscriptionsController
-- [ ] T063 [US2] GET endpoint returns 200 OK with SubscriptionsResponse containing all subscriptions
-- [ ] T064 [US2] GET endpoint returns subscriptions in order they were added (by AddedAt timestamp or insertion order)
-- [ ] T065 [US2] Add [ProducesResponseType(typeof(SubscriptionsResponse), StatusCodes.Status200OK)] to GET endpoint
-- [ ] T066 [US2] Add [ProducesResponseType(StatusCodes.Status500InternalServerError)] to GET endpoint
-- [ ] T067 [US2] Add XML documentation to GET endpoint describing the operation and response
+- [X] T062 [P] [US2] Implement GET /api/subscriptions endpoint in SubscriptionsController
+- [X] T063 [US2] GET endpoint returns 200 OK with SubscriptionsResponse containing all subscriptions
+- [X] T064 [US2] GET endpoint returns subscriptions in order they were added (by AddedAt timestamp or insertion order)
+- [X] T065 [US2] Add [ProducesResponseType(typeof(SubscriptionsResponse), StatusCodes.Status200OK)] to GET endpoint
+- [X] T066 [US2] Add [ProducesResponseType(StatusCodes.Status500InternalServerError)] to GET endpoint
+- [X] T067 [US2] Add XML documentation to GET endpoint describing the operation and response
 
 ### Backend Testing - User Story 2
 
-- [ ] T068 [P] [US2] Write integration test: GET /api/subscriptions returns empty subscriptions list initially
-- [ ] T069 [US2] Write integration test: POST subscription then GET /api/subscriptions returns subscription in response
-- [ ] T070 [US2] Write integration test: Add 3 subscriptions, GET returns all 3 in order added
-- [ ] T071 [US2] Write integration test: GET /api/subscriptions returns 200 OK status
-- [ ] T072 [US2] Verify unit test coverage >= 70% for GET endpoint
-- [ ] T073 [US2] Run backend tests including GET endpoint tests (all tests PASS)
+- [X] T068 [P] [US2] Write integration test: GET /api/subscriptions returns empty subscriptions list initially
+- [X] T069 [US2] Write integration test: POST subscription then GET /api/subscriptions returns subscription in response
+- [X] T070 [US2] Write integration test: Add 3 subscriptions, GET returns all 3 in order added
+- [X] T071 [US2] Write integration test: GET /api/subscriptions returns 200 OK status
+- [X] T072 [US2] Verify unit test coverage >= 70% for GET endpoint
+- [X] T073 [US2] Run backend tests including GET endpoint tests (all tests PASS)
 
 ### Frontend Implementation - User Story 2
 
-- [ ] T074 [P] [US2] Create SubscriptionApiClient service in `frontend/src/RSSFeedReader.UI/Services/SubscriptionApiClient.cs`
-- [ ] T075 [US2] Inject HttpClient into SubscriptionApiClient via constructor
-- [ ] T076 [US2] Read ApiUrl from appsettings.json in SubscriptionApiClient constructor
-- [ ] T077 [US2] Implement GetSubscriptionsAsync() method calling GET /api/subscriptions endpoint
-- [ ] T078 [US2] Implement AddSubscriptionAsync(string url) method calling POST /api/subscriptions endpoint
-- [ ] T079 [US2] Add error handling to both methods: log errors, return empty list or throw on failure
-- [ ] T080 [US2] Add XML documentation to SubscriptionApiClient methods
+- [X] T074 [P] [US2] Create SubscriptionApiClient service in `frontend/src/RSSFeedReader.UI/Services/SubscriptionApiClient.cs`
+- [X] T075 [US2] Inject HttpClient into SubscriptionApiClient via constructor
+- [X] T076 [US2] Read ApiUrl from appsettings.json in SubscriptionApiClient constructor
+- [X] T077 [US2] Implement GetSubscriptionsAsync() method calling GET /api/subscriptions endpoint
+- [X] T078 [US2] Implement AddSubscriptionAsync(string url) method calling POST /api/subscriptions endpoint
+- [X] T079 [US2] Add error handling to both methods: log errors, return empty list or throw on failure
+- [X] T080 [US2] Add XML documentation to SubscriptionApiClient methods
 
 ### Frontend Components - User Story 2
 
-- [ ] T081 [P] [US2] Create SubscriptionList component in `frontend/src/RSSFeedReader.UI/Components/SubscriptionList.razor`
-- [ ] T082 [US2] SubscriptionList receives `IEnumerable<SubscriptionDto>` subscriptions as parameter
-- [ ] T083 [US2] Render subscriptions as HTML list (ul/li or table format)
-- [ ] T084 [US2] Display "No subscriptions" message when list is empty
-- [ ] T085 [US2] Display each subscription URL, AddedAt timestamp in list
-- [ ] T086 [US2] Order subscriptions by AddedAt (oldest first) in component
-- [ ] T087 [P] [US2] Create AddSubscriptionForm component in `frontend/src/RSSFeedReader.UI/Components/AddSubscriptionForm.razor`
-- [ ] T088 [US2] AddSubscriptionForm has input field for URL, pre-filled with empty string
-- [ ] T089 [US2] AddSubscriptionForm has "Add Subscription" button
-- [ ] T090 [US2] AddSubscriptionForm validates input: reject if empty or > 2000 chars
-- [ ] T091 [US2] AddSubscriptionForm emits OnSubscriptionAdded callback when form submitted successfully
-- [ ] T092 [US2] AddSubscriptionForm shows validation error message if URL invalid
-- [ ] T093 [US2] AddSubscriptionForm clears input field after successful submission
+- [X] T081 [P] [US2] Create SubscriptionList component in `frontend/src/RSSFeedReader.UI/Components/SubscriptionList.razor`
+- [X] T082 [US2] SubscriptionList receives `IEnumerable<SubscriptionDto>` subscriptions as parameter
+- [X] T083 [US2] Render subscriptions as HTML list (ul/li or table format)
+- [X] T084 [US2] Display "No subscriptions" message when list is empty
+- [X] T085 [US2] Display each subscription URL, AddedAt timestamp in list
+- [X] T086 [US2] Order subscriptions by AddedAt (oldest first) in component
+- [X] T087 [P] [US2] Create AddSubscriptionForm component in `frontend/src/RSSFeedReader.UI/Components/AddSubscriptionForm.razor`
+- [X] T088 [US2] AddSubscriptionForm has input field for URL, pre-filled with empty string
+- [X] T089 [US2] AddSubscriptionForm has "Add Subscription" button
+- [X] T090 [US2] AddSubscriptionForm validates input: reject if empty or > 2000 chars
+- [X] T091 [US2] AddSubscriptionForm emits OnSubscriptionAdded callback when form submitted successfully
+- [X] T092 [US2] AddSubscriptionForm shows validation error message if URL invalid
+- [X] T093 [US2] AddSubscriptionForm clears input field after successful submission
 
 ### Frontend Pages - User Story 2
 
-- [ ] T094 [US2] Create Subscriptions.razor page in `frontend/src/RSSFeedReader.UI/Pages/Subscriptions.razor` with route `@page "/"`
-- [ ] T095 [US2] Subscriptions page uses `@page "/"` directive (main landing page)
-- [ ] T096 [US2] Subscriptions page injects SubscriptionApiClient service
-- [ ] T097 [US2] OnInitializedAsync in page loads subscriptions via GetSubscriptionsAsync() on page load
-- [ ] T098 [US2] Page displays AddSubscriptionForm and SubscriptionList components
-- [ ] T099 [US2] Page handles AddSubscriptionForm's OnSubscriptionAdded callback: add URL via API, refresh list
-- [ ] T100 [US2] Page updates SubscriptionList component when subscription added (list updates immediately <100ms)
-- [ ] T101 [US2] Add error handling: show user-friendly error message if API call fails
-- [ ] T102 [US2] Add loading state: show "Loading..." during initial page load
+- [X] T094 [US2] Create Subscriptions.razor page in `frontend/src/RSSFeedReader.UI/Pages/Subscriptions.razor` with route `@page "/"`
+- [X] T095 [US2] Subscriptions page uses `@page "/"` directive (main landing page)
+- [X] T096 [US2] Subscriptions page injects SubscriptionApiClient service
+- [X] T097 [US2] OnInitializedAsync in page loads subscriptions via GetSubscriptionsAsync() on page load
+- [X] T098 [US2] Page displays AddSubscriptionForm and SubscriptionList components
+- [X] T099 [US2] Page handles AddSubscriptionForm's OnSubscriptionAdded callback: add URL via API, refresh list
+- [X] T100 [US2] Page updates SubscriptionList component when subscription added (list updates immediately <100ms)
+- [X] T101 [US2] Add error handling: show user-friendly error message if API call fails
+- [X] T102 [US2] Add loading state: show "Loading..." during initial page load
 
 ### Frontend Template Cleanup (CRITICAL per TechStack doc)
 
-- [ ] T103 [US2] Delete template demo pages from Pages directory: Home.razor, Counter.razor, Weather.razor
-- [ ] T104 [US2] Update NavMenu.razor: remove demo navigation links, update to show only "Subscriptions"
-- [ ] T105 [US2] Verify only Subscriptions.razor uses `@page "/"` directive
-- [ ] T106 [US2] Verify no route conflicts in remaining pages
-- [ ] T107 [US2] Verify frontend builds without errors after template cleanup
+- [X] T103 [US2] Delete template demo pages from Pages directory: Home.razor, Counter.razor, Weather.razor
+- [X] T104 [US2] Update NavMenu.razor: remove demo navigation links, update to show only "Subscriptions"
+- [X] T105 [US2] Verify only Subscriptions.razor uses `@page "/"` directive
+- [X] T106 [US2] Verify no route conflicts in remaining pages
+- [X] T107 [US2] Verify frontend builds without errors after template cleanup
 
 ### Frontend Testing - User Story 2
 
-- [ ] T108 [P] [US2] Create SubscriptionListTests component tests in `frontend/src/RSSFeedReader.UI.Tests/Components/SubscriptionListTests.cs`
-- [ ] T109 [US2] Write component test: SubscriptionList renders empty message when no subscriptions
-- [ ] T110 [US2] Write component test: SubscriptionList renders all subscriptions when provided
-- [ ] T111 [US2] Write component test: SubscriptionList displays subscriptions in correct order
-- [ ] T112 [P] [US2] Create AddSubscriptionFormTests in `frontend/src/RSSFeedReader.UI.Tests/Components/AddSubscriptionFormTests.cs`
-- [ ] T113 [US2] Write component test: AddSubscriptionForm rejects empty input with validation error
-- [ ] T114 [US2] Write component test: AddSubscriptionForm rejects URL > 2000 chars with validation error
-- [ ] T115 [US2] Write component test: AddSubscriptionForm accepts valid URL and fires OnSubscriptionAdded callback
-- [ ] T116 [US2] Write component test: AddSubscriptionForm clears input after successful submission
-- [ ] T117 [US2] Write API client test: GetSubscriptionsAsync() calls GET /api/subscriptions endpoint
-- [ ] T118 [US2] Write API client test: AddSubscriptionAsync() calls POST /api/subscriptions endpoint
-- [ ] T119 [US2] Verify test coverage >= 70% for component and service code
-- [ ] T120 [US2] Run frontend tests: `dotnet test frontend/` (all tests PASS)
+- [X] T108 [P] [US2] Create SubscriptionListTests component tests in `frontend/src/RSSFeedReader.UI.Tests/Components/SubscriptionListTests.cs`
+- [X] T109 [US2] Write component test: SubscriptionList renders empty message when no subscriptions
+- [X] T110 [US2] Write component test: SubscriptionList renders all subscriptions when provided
+- [X] T111 [US2] Write component test: SubscriptionList displays subscriptions in correct order
+- [X] T112 [P] [US2] Create AddSubscriptionFormTests in `frontend/src/RSSFeedReader.UI.Tests/Components/AddSubscriptionFormTests.cs`
+- [X] T113 [US2] Write component test: AddSubscriptionForm rejects empty input with validation error
+- [X] T114 [US2] Write component test: AddSubscriptionForm rejects URL > 2000 chars with validation error
+- [X] T115 [US2] Write component test: AddSubscriptionForm accepts valid URL and fires OnSubscriptionAdded callback
+- [X] T116 [US2] Write component test: AddSubscriptionForm clears input after successful submission
+- [X] T117 [US2] Write API client test: GetSubscriptionsAsync() calls GET /api/subscriptions endpoint
+- [X] T118 [US2] Write API client test: AddSubscriptionAsync() calls POST /api/subscriptions endpoint
+- [X] T119 [US2] Verify test coverage >= 70% for component and service code
+- [X] T120 [US2] Run frontend tests: `dotnet test frontend/` (all tests PASS)
 
 **Checkpoint**: Frontend displays subscription list, form accepts user input, list updates immediately after adding subscription. All tests passing. Template cleanup complete.
 
@@ -419,3 +419,4 @@ description: "Task list for MVP Subscription Management implementation"
 ✅ No hardcoded URLs or secrets  
 
 **MVP Feature Complete**: Users can add RSS/Atom feed subscriptions and view their subscription list in-memory with immediate visual feedback.
+

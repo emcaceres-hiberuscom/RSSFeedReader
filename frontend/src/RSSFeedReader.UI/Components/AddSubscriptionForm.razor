@@ -1,0 +1,44 @@
+<EditForm Model="this" OnValidSubmit="HandleSubmitAsync">
+    <div class="mb-3">
+        <label for="subscription-url" class="form-label">Feed URL</label>
+        <InputText id="subscription-url" class="form-control" @bind-Value="Url" />
+    </div>
+    <button type="submit" class="btn btn-primary" data-testid="add-subscription-button">Add Subscription</button>
+</EditForm>
+
+@if (!string.IsNullOrWhiteSpace(ValidationError))
+{
+    <div class="text-danger mt-2" data-testid="add-subscription-error">@ValidationError</div>
+}
+
+@code {
+    private const int MaxUrlLength = 2000;
+
+    [Parameter]
+    public EventCallback<string> OnSubscriptionAdded { get; set; }
+
+    public string Url { get; set; } = string.Empty;
+
+    public string ValidationError { get; set; } = string.Empty;
+
+    private async Task HandleSubmitAsync()
+    {
+        var trimmed = Url.Trim();
+
+        if (string.IsNullOrWhiteSpace(trimmed))
+        {
+            ValidationError = "URL cannot be empty.";
+            return;
+        }
+
+        if (trimmed.Length > MaxUrlLength)
+        {
+            ValidationError = "URL cannot exceed 2000 characters.";
+            return;
+        }
+
+        ValidationError = string.Empty;
+        await OnSubscriptionAdded.InvokeAsync(trimmed);
+        Url = string.Empty;
+    }
+}
